@@ -50,3 +50,34 @@ void NodeList::eraseFront()                 // remove first
 
 void NodeList::eraseBack()                  // remove last
     { erase(--end()); }
+
+// Implementação do construtor de Iterator
+NodeList::Iterator::Iterator(Node* u) 
+    : v(u) {}
+
+// Implementação do operador de desreferência (*)
+Elem& NodeList::Iterator::operator*() 
+    { return v->elem; }                     // Retorna o elemento armazenado no nó
+
+
+// Implementação do operador de igualdade (==)
+bool NodeList::Iterator::operator==(const Iterator& p) const 
+    { return v == p.v; }                    // Compara os ponteiros dos nós
+
+
+// Implementação do operador de diferença (!=)
+bool NodeList::Iterator::operator!=(const Iterator& p) const 
+    { return v != p.v; }                    // Compara os ponteiros dos nós
+
+
+// Implementação do operador de incremento (++)
+NodeList::Iterator& NodeList::Iterator::operator++() {
+    v = v->next;                            // Move para o próximo nó
+    return *this;
+}
+
+// Implementação do operador de decremento (--)
+NodeList::Iterator& NodeList::Iterator::operator--() {
+    v = v->prev;                            // Move para o nó anterior
+    return *this;
+}
